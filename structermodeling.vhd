@@ -1,7 +1,7 @@
 module authorization_system(
-    input [7:0] username,   // 8-bit kullanıcı adı
-    input [7:0] password,   // 8-bit şifre
-    output authorized       // Yetkilendirme sinyali
+    input [7:0] username,   
+    input [7:0] password,   
+    output authorized       
 );
 
     wire username_match, password_match;
@@ -9,13 +9,13 @@ module authorization_system(
 
     comparator #(8) username_comparator (
         .a(username),
-        .b(8'h55),         // USERNAME = 0x55
+        .b(8'h55),         
         .eq(username_match)
     );
 
     comparator #(8) password_comparator (
         .a(password),
-        .b(8'hAA),         // PASSWORD = 0xAA
+        .b(8'hAA),         
         .eq(password_match)
     );
 
@@ -53,12 +53,12 @@ endmodule
 );
 
     wire valid_user_id;
-    wire [2:0] role_permissions; // Rol bazlı izin matrisi
+    wire [2:0] role_permissions; 
 
 
     comparator #(8) user_id_comparator (
         .a(user_id),
-        .b(8'hA5), // VALID_USER_ID = 0xA5
+        .b(8'hA5), 
         .eq(valid_user_id)
     );
 
@@ -72,7 +72,7 @@ endmodule
 
     and_gate and1 (
         .a(valid_user_id),
-        .b(role_permissions[0]), // Read izin kontrolü
+        .b(role_permissions[0]), 
         .y(access_granted)
     );
 
@@ -86,11 +86,11 @@ module rbac(
     input [1:0] operation,
     output [2:0] permissions
 );
-    reg [2:0] role_matrix[0:2]; // Role izin tablosu: [Read, Write, Delete]
+    reg [2:0] role_matrix[0:2]; 
     initial begin
-        role_matrix[0] = 3'b100; // USER: sadece Read
-        role_matrix[1] = 3'b110; // ADMIN: Read ve Write
-        role_matrix[2] = 3'b111; // SUPERVISOR: Tüm izinler
+        role_matrix[0] = 3'b100; 
+        role_matrix[1] = 3'b110; 
+        role_matrix[2] = 3'b111; 
     end
 
     assign permissions = role_matrix[role];
@@ -174,19 +174,19 @@ module white_goods_control(
 
     timer laundry_timer (
         .hour(hour),
-        .start_hour(4'd10), // LAUNDRY_AUTO_START
+        .start_hour(4'd10), 
         .active(laundry_auto)
     );
 
     timer dishwasher_timer (
         .hour(hour),
-        .start_hour(4'd20), // DISHWASHER_AUTO_START
+        .start_hour(4'd20), 
         .active(dishwasher_auto)
     );
 
     timer oven_timer (
         .hour(hour),
-        .start_hour(4'd17), // OVEN_AUTO_START
+        .start_hour(4'd17), 
         .active(oven_auto)
     );
 
@@ -286,9 +286,9 @@ endmodule
 
     always @(*) begin
         if (arm_system && motion_sensor) begin
-            alarm = 1'b1; // Güvenlik aktif ve hareket algılanmışsa
+            alarm = 1'b1; 
         end else begin
-            alarm = 1'b0; // Diğer durumlarda alarm kapalı
+            alarm = 1'b0; 
         end
     end
 
