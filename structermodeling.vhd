@@ -269,7 +269,7 @@ endmodule
     output door_locked
 );
 
-    // Basit bağlamalar
+    
     assign fire_alarm = fire_detected;
     assign burglar_alarm = burglar_detected;
     assign fire_extinguisher_status = activate_fire_extinguisher;
