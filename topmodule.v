@@ -20,7 +20,6 @@ module HomeOasis_Top(
     output alarm
 );
 
-    // Authorization System
     AuthorizationSystem auth_sys (
         .clk(clk),
         .reset(reset),
@@ -29,7 +28,6 @@ module HomeOasis_Top(
         .auth_status(auth_status)
     );
 
-    // Lighting Control
     LightingControl light_ctrl (
         .clk(clk),
         .reset(reset),
@@ -38,7 +36,6 @@ module HomeOasis_Top(
         .state(light_state)
     );
 
-    // White Goods Control
     WhiteGoodsControl wg_ctrl (
         .clk(clk),
         .reset(reset),
@@ -48,7 +45,6 @@ module HomeOasis_Top(
         .dishwasher_status(dishwasher_status)
     );
 
-    // Climate Control
     ClimateControl climate_ctrl (
         .clk(clk),
         .reset(reset),
@@ -58,7 +54,6 @@ module HomeOasis_Top(
         .cooler_on(cooler_on)
     );
 
-    // Safety System
     SafetySystem safety_sys (
         .clk(clk),
         .reset(reset),
